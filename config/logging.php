@@ -1,6 +1,6 @@
 <?php
 
-use App\Helpers\Logs;
+use App\Helpers\LogsHelper;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
@@ -135,7 +135,9 @@ return [
         /** Global (Daily) */
         'global' => ['driver' => 'daily', 'path' => storage_path('logs/global/global.log'), 'level' => env('LOG_LEVEL', 'debug'), 'days' => 7],
 
-        Logs::custom_log('positions'),
+        ...LogsHelper::custom_log('positions'),
+        ...LogsHelper::custom_log('owners'),
+        ...LogsHelper::custom_log('employees'),
 
     ],
 

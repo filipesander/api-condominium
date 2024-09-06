@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('cpf', 11)->unique();
-            $table->string('number');
-            $table->string('email')->unique();
-            $table->unsignedInteger('tower');
-            $table->string('apartment_number');
-            $table->string('garage');
-            $table->boolean('rented')->default(false);
-            $table->boolean('paid')->default(false);
+            $table->string('name')->comment('Nome Morador');
+            $table->string('cpf', 11)->unique()->comment('CPF');
+            $table->string('number')->comment('Número de Telefone');
+            $table->date('birth_date')->comment('Data de Nascimento');
+            $table->string('email')->unique()->comment('Email');
+            $table->unsignedInteger('tower')->comment('Torre do Morador');
+            $table->string('apartment_number')->comment('Número do Apartamento');
+            $table->string('garage')->comment('Garagem do Morador');
+            $table->boolean('rented')->default(false)->comment('Apartamento está alugado (TRUE|FALSE)');
+            $table->boolean('paid')->default(false)->comment('Apartamento Quitado (TRUE|FALSE)');
             $table->timestamps();
         });
     }

@@ -5,7 +5,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
-class PositionException extends Exception
+
+class EmployeeException extends Exception
 {
     /**
      * @param string $message
@@ -23,11 +24,11 @@ class PositionException extends Exception
 
     public function report()
     {
-        Log::channel('positions')->{$this->level}("positions: {$this->message}: {$this->description}", $this->logPayload ?? $this->payload);
+        Log::channel('employees')->{$this->level}("employees: {$this->message}: {$this->description}", $this->logPayload ?? $this->payload);
     }
 
     public function render()
     {
-        return response()->json(['message' => $this->message, 'payload' => $this->payload, 'status' => $this->status], $this->status);
+        return response()->json(['message' => $this->message, 'status' => $this->status], $this->status);
     }
 }

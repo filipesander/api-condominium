@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-class Logs
+class LogsHelper
 {
     /**
      * Generate new log configuration

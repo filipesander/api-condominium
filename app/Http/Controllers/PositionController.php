@@ -3,27 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\PositionException;
-use App\Http\Requests\StoreUpdatePositionRequest;
+use App\Http\Requests\Position\StoreUpdatePositionRequest;
 use App\Models\Position;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Throwable;
 
 class PositionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Lista todos os Cargos
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        $positions = Position::all(['id', 'title']);
+        $positions = Position::paginate();
 
-        return response()->json($positions);
+        return response()->json($positions, 200);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Cria um Cargo
+     * @param StoreUpdatePositionRequest $request
+     * @throws PositionException
+     * @return JsonResponse
      */
-    public function store(StoreUpdatePositionRequest $request)
+    public function store(StoreUpdatePositionRequest $request): JsonResponse
     {
         try {
             $validatedData = $request->validated();
@@ -31,12 +36,13 @@ class PositionController extends Controller
 
             if ($positionExists) return response()->json(["message" => "Já existe um cargo com esse nome!"], 400);
 
-            Position::create([
+            $position = Position::create([
                 "title" => $validatedData['title']
             ]);
 
             return response()->json([
-                "message" => "Cargo criado com sucesso"
+                "message" => "Cargo criado com sucesso!",
+                "data" => $position
             ], 201);
         } catch (Throwable $e) {
             report($e);
@@ -44,60 +50,68 @@ class PositionController extends Controller
             throw new PositionException(
                 message: "Erro ao criar um cargo",
                 description: $e->getMessage(),
+                status: 500
             );
         }
     }
 
     /**
-     * Display the specified resource.
+     * Exibe um Cargo
+     * @param string $id
+     * @return JsonResponse
      */
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
         $position = Position::whereId($id)->first();
 
-        if (!$position) return response()->json(["message" => "Esse cargo não foi encontrado!"], 400);
+        if (empty($position)) return response()->json(["message" => "Esse cargo não foi encontrado!"], 404);
 
-
-        return response()->json($position);
+        return response()->json($position, 200);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza um Cargo
+     * @param StoreUpdatePositionRequest $request
+     * @param string $id
+     * @throws PositionException
+     * @return JsonResponse
      */
-    public function update(StoreUpdatePositionRequest $request, string $id)
+    public function update(StoreUpdatePositionRequest $request, string $id): JsonResponse
     {
         try {
             $validatedData = $request->validated();
             $position = Position::whereId($id)->first();
 
-            if (!$position) return response()->json(["message" => "Esse cargo não foi encontrado!"], 400);
+            if (empty($position)) return response()->json(["message" => "Esse cargo não foi encontrado!"], 404);
 
             $position->update($validatedData);
 
             return response()->json([
-                "message" => "Cargo atualizado com sucesso"
+                "message" => "Cargo atualizado com sucesso!"
             ], 200);
         } catch (Throwable $e) {
             report($e);
 
             throw new PositionException(
                 message: "Erro ao atualizar um cargo",
-                description: $e->getMessage()
+                description: $e->getMessage(),
+                status: 500
             );
         }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Deleta um Cargo
+     * @param string $id
+     * @return JsonResponse
      */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
         $position = Position::whereId($id)->first();
 
-        if (!$position) return response()->json(["message" => "Esse cargo não foi encontrado!"], 400);
+        if (empty($position)) return response()->json(["message" => "Esse cargo não foi encontrado!"], 404);
 
         $position->delete();
-
-        return response()->json(["message" => "Cargo deletado com sucesso!"]);
+        return response()->json(["message" => "Cargo deletado com sucesso!"], 200);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\PorteiroController;
 use App\Http\Controllers\PositionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -9,3 +11,4 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 Route::apiResource('/positions', PositionController::class);
+Route::apiResource('owners', OwnerController::class);

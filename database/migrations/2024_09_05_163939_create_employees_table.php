@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedTinyInteger('age');
-            $table->decimal('salary', 15, 2);
-            $table->date('date_admission');
-            $table->date('date_dismissal')->nullable();
-            $table->unsignedInteger('vacation')->default(0);
+            $table->string('name')->comment('Nome do Funcionário');
+            $table->unsignedTinyInteger('age')->comment('Idade do Funcionário');
+            $table->decimal('salary', 15, 2)->comment('Salário do Funcionário');
+            $table->date('date_admission')->comment('Data de Admissão');
+            $table->date('date_dismissal')->nullable()->comment('Data de Demissão');
+            $table->unsignedInteger('vacation')->default(0)->comment('Quantidade de Férias Tiradas');
             $table->foreignId('position_id')->constrained('positions')->onDelete('cascade');
             $table->timestamps();
         });
