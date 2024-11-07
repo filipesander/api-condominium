@@ -35,7 +35,7 @@ class OwnerController extends Controller
         try {
             $validatedData = $request->validated();
 
-            if(FormatHelper::isValidCpf($validatedData['cpf']) == false){
+            if (FormatHelper::isValidCpf($validatedData['cpf']) == false) {
                 return response()->json(["message" => "CPF informado inválido!"], 400);
             }
 
@@ -56,7 +56,6 @@ class OwnerController extends Controller
                 'message' => 'Morador cadastrado com sucesso!',
                 'data' => $owner,
             ], 201);
-
         } catch (Throwable $e) {
             report($e);
 
@@ -77,7 +76,7 @@ class OwnerController extends Controller
     {
         $owner = Owner::whereId($id)->first();
 
-        if(empty($owner)) return response()->json(["message" => "Morador não encontrado!"], 404);
+        if (empty($owner)) return response()->json(["message" => "Morador não encontrado!"], 404);
 
         return response()->json($owner);
     }
@@ -91,21 +90,20 @@ class OwnerController extends Controller
      */
     public function update(UpdateOwnerRequest $request, string $id): JsonResponse
     {
-        try{
+        try {
             $validatedData = $request->validated();
             $owner = Owner::whereId($id)->first();
 
-            if(empty($owner)) return response()->json(["message" => "Morador não encontrado!"], 404);
+            if (empty($owner)) return response()->json(["message" => "Morador não encontrado!"], 404);
 
-            if(FormatHelper::isValidCpf($validatedData['cpf']) == false){
+            if (FormatHelper::isValidCpf($validatedData['cpf']) == false) {
                 return response()->json(["message" => "CPF informado inválido!"], 400);
             }
 
             $owner->update($validatedData);
 
             return response()->json(["message" => "Dados do Funcionário atualizado com sucesso"], 200);
-
-        }catch(Throwable $e){
+        } catch (Throwable $e) {
             report($e);
 
             throw new OwnerException(
@@ -125,7 +123,7 @@ class OwnerController extends Controller
     {
         $owner = Owner::whereId($id)->first();
 
-        if(empty($owner)) return response()->json(["message" => "Morador não encontrado!"], 404);
+        if (empty($owner)) return response()->json(["message" => "Morador não encontrado!"], 404);
 
         $owner->delete();
 
