@@ -1,0 +1,752 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Condominium",
+        "description": "API documentation for the Condominium management system",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/owners": {
+            "get": {
+                "tags": [
+                    "Owners"
+                ],
+                "summary": "Listar todos os moradores",
+                "description": "Retorna uma lista de moradores paginados",
+                "operationId": "9e6af3de1e756f8f19aa17b9f190d639",
+                "responses": {
+                    "200": {
+                        "description": "Lista de moradores retornada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "João Silva"
+                                                    },
+                                                    "cpf": {
+                                                        "type": "string",
+                                                        "example": "12345678900"
+                                                    },
+                                                    "birth_date": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "1990-01-01"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "joao@exemplo.com"
+                                                    },
+                                                    "tower": {
+                                                        "type": "string",
+                                                        "example": "A"
+                                                    },
+                                                    "apartment_number": {
+                                                        "type": "string",
+                                                        "example": "101"
+                                                    },
+                                                    "garage": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "rented": {
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    },
+                                                    "paid": {
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Lista de moradores retornada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Owners"
+                ],
+                "summary": "Cadastrar um morador",
+                "description": "Cadastra um morador no sistema",
+                "operationId": "f6d6bf3981a1f44f42bb408ade192f8e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "cpf",
+                                    "birth_date",
+                                    "email",
+                                    "tower",
+                                    "apartment_number",
+                                    "garage",
+                                    "rented",
+                                    "paid"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "João Silva"
+                                    },
+                                    "cpf": {
+                                        "type": "string",
+                                        "example": "12345678900"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1990-01-01"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "joao@exemplo.com"
+                                    },
+                                    "tower": {
+                                        "type": "string",
+                                        "example": "A"
+                                    },
+                                    "apartment_number": {
+                                        "type": "string",
+                                        "example": "101"
+                                    },
+                                    "garage": {
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "rented": {
+                                        "type": "boolean",
+                                        "example": true
+                                    },
+                                    "paid": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Morador cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Morador cadastrado com sucesso!"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "João Silva"
+                                                },
+                                                "cpf": {
+                                                    "type": "string",
+                                                    "example": "12345678900"
+                                                },
+                                                "birth_date": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "1990-01-01"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "joao@exemplo.com"
+                                                },
+                                                "tower": {
+                                                    "type": "string",
+                                                    "example": "A"
+                                                },
+                                                "apartment_number": {
+                                                    "type": "string",
+                                                    "example": "101"
+                                                },
+                                                "garage": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "rented": {
+                                                    "type": "boolean",
+                                                    "example": true
+                                                },
+                                                "paid": {
+                                                    "type": "boolean",
+                                                    "example": true
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "CPF inválido"
+                    },
+                    "500": {
+                        "description": "Erro ao cadastrar morador"
+                    }
+                }
+            }
+        },
+        "/api/owners/{id}": {
+            "get": {
+                "tags": [
+                    "Owners"
+                ],
+                "summary": "Exibir um morador",
+                "description": "Retorna os detalhes de um morador específico",
+                "operationId": "bea386b360fe056d32a8729e68220029",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do morador",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Morador retornado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "João Silva"
+                                        },
+                                        "cpf": {
+                                            "type": "string",
+                                            "example": "12345678900"
+                                        },
+                                        "birth_date": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "1990-01-01"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "joao@exemplo.com"
+                                        },
+                                        "tower": {
+                                            "type": "string",
+                                            "example": "A"
+                                        },
+                                        "apartment_number": {
+                                            "type": "string",
+                                            "example": "101"
+                                        },
+                                        "garage": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "rented": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "paid": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Morador não encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Owners"
+                ],
+                "summary": "Atualizar dados de um morador",
+                "description": "Atualiza os dados de um morador específico",
+                "operationId": "358e77a6abf3673bfe95c499cddd18e2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do morador",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "cpf",
+                                    "birth_date",
+                                    "email",
+                                    "tower",
+                                    "apartment_number",
+                                    "garage",
+                                    "rented",
+                                    "paid"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "João Silva"
+                                    },
+                                    "cpf": {
+                                        "type": "string",
+                                        "example": "12345678900"
+                                    },
+                                    "birth_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1990-01-01"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "joao@exemplo.com"
+                                    },
+                                    "tower": {
+                                        "type": "string",
+                                        "example": "A"
+                                    },
+                                    "apartment_number": {
+                                        "type": "string",
+                                        "example": "101"
+                                    },
+                                    "garage": {
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "rented": {
+                                        "type": "boolean",
+                                        "example": true
+                                    },
+                                    "paid": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Morador atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Dados do Morador atualizados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Morador não encontrado"
+                    },
+                    "400": {
+                        "description": "CPF inválido"
+                    },
+                    "500": {
+                        "description": "Erro ao atualizar morador"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Owners"
+                ],
+                "summary": "Excluir um morador",
+                "description": "Exclui um morador do sistema",
+                "operationId": "8d8fb48464822ce7ff1ea8d4ff719c4c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do morador",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Morador deletado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Morador deletado com sucesso!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Morador não encontrado"
+                    }
+                }
+            }
+        },
+        "/api/positions": {
+            "get": {
+                "tags": [
+                    "Positions"
+                ],
+                "summary": "Listar todos os cargos",
+                "description": "Retorna uma lista de cargos paginados",
+                "operationId": "979e46c0161e2570ef5478434095cb31",
+                "responses": {
+                    "200": {
+                        "description": "Lista de cargos retornada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Manager"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2024-11-08T12:34:56Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2024-11-08T12:34:56Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Lista de cargos retornada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Positions"
+                ],
+                "summary": "Criar um novo cargo",
+                "description": "Cria um cargo e retorna os detalhes do novo cargo",
+                "operationId": "8b47544f5112eedfa8e15bfa7d23ba46",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Manager"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Cargo criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Cargo criado com sucesso!"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Manager"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-11-08T12:34:56Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-11-08T12:34:56Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Já existe um cargo com esse nome!"
+                    },
+                    "500": {
+                        "description": "Erro ao criar um cargo"
+                    }
+                }
+            }
+        },
+        "/api/positions/{id}": {
+            "get": {
+                "tags": [
+                    "Positions"
+                ],
+                "summary": "Exibir detalhes de um cargo",
+                "description": "Retorna os detalhes de um cargo específico",
+                "operationId": "02987e1d2529f90862c1e6ebeed617a5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do cargo",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cargo retornado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "1"
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Manager"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-11-08T12:34:56Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-11-08T12:34:56Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cargo não encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Positions"
+                ],
+                "summary": "Atualizar um cargo",
+                "description": "Atualiza as informações de um cargo específico",
+                "operationId": "e01f80e1ad1b8b3f65a959aaf8b1f4d1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do cargo",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Manager"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cargo atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Cargo atualizado com sucesso!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cargo não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro ao atualizar um cargo"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Positions"
+                ],
+                "summary": "Deletar um cargo",
+                "description": "Deleta um cargo específico",
+                "operationId": "be998660e7df336ea7e1b510aefe2694",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do cargo",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cargo deletado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Cargo deletado com sucesso!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cargo não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro ao deletar o cargo"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Owners",
+            "description": "Owners"
+        },
+        {
+            "name": "Positions",
+            "description": "Positions"
+        }
+    ]
+}

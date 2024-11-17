@@ -2,19 +2,43 @@
 
 namespace Tests\Feature;
 
+use App\Models\Position;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class PositionTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+
+    public function test_get_positions(): void
     {
-        $response = $this->get('/');
+        $response = $this->get('/api/positions');
 
         $response->assertStatus(200);
+    }
+
+    public function test_post_positions()
+    {
+        $data = ["title" => "Novo cargo"];
+
+        $response = $this->postJson('api/positions', $data);
+
+        $response->assertStatus(201)
+            ->assertJson([
+                'message' => 'Cargo criado com sucesso!',
+                'data' => [
+                    'title' => 'Novo Cargo'
+                ]
+            ]);
+    }
+
+    public function test_show_position(): void
+    {
+        $position = Position::factory()->create();
+
+        $response = $this->getJson("/api/positions/{$position->id}");
+
+        $response->assertStatus(200)
+            ->assertJson(['title' => $position->title]);
     }
 }
